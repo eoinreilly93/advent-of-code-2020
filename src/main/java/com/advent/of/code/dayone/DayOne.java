@@ -25,7 +25,8 @@ public class DayOne {
   /**
    * @param input list of integers
    * @param target the target value
-   * @return the product of the two numbers in the input that sum to the target value
+   * @return the product of the two numbers in the input that sum to the target value or -1 if none
+   *     of the numbers sum to it
    */
   private static int calculateProduct(final List<Integer> input, final int target) {
     // value, index

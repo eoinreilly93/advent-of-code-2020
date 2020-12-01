@@ -8,27 +8,29 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class DayOneTest {
 
   @Test
-  public void testPartOne() throws IOException {
+  void testPartOne() throws IOException {
 
     final List<Integer> input =
         Files.readAllLines(Paths.get("src/test/resources/day_one_input.txt")).stream()
             .map(Integer::parseInt)
             .collect(Collectors.toList());
 
-    System.out.println(DayOne.partOne(input));
+    assertEquals(542619, DayOne.partOne(input));
   }
 
   @Test
-  public void testPartTwo() throws IOException {
+  void testPartTwo() throws IOException {
 
     final List<Integer> input =
         Files.readAllLines(Paths.get("src/test/resources/day_one_input.txt")).stream()
             .map(Integer::parseInt)
             .collect(Collectors.toList());
 
-    System.out.println(DayOne.partTwo(input));
+    assertEquals(32858450, DayOne.partTwo(input));
   }
 }
