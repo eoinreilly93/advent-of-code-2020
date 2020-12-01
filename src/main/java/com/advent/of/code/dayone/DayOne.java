@@ -7,13 +7,13 @@ import java.util.Map;
 public class DayOne {
 
   public static int partOne(final List<Integer> input) {
-    return calculateValue(input, 2020);
+    return calculateProduct(input, 2020);
   }
 
   public static int partTwo(final List<Integer> input) {
     int result = 0;
     for (int i = 0; i < input.size(); i++) {
-      final int val = calculateValue(input.subList(i + 1, input.size()), 2020 - input.get(i));
+      final int val = calculateProduct(input.subList(i + 1, input.size()), 2020 - input.get(i));
       if (val != -1) {
         result = val * input.get(i);
         break;
@@ -22,7 +22,12 @@ public class DayOne {
     return result;
   }
 
-  private static int calculateValue(final List<Integer> input, final int target) {
+  /**
+   * @param input list of integers
+   * @param target the target value
+   * @return the product of the two numbers in the input that sum to the target value
+   */
+  private static int calculateProduct(final List<Integer> input, final int target) {
     // value, index
     final Map<Integer, Integer> map = new HashMap<>();
     int val = 0;
