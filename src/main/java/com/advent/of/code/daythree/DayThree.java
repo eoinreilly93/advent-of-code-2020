@@ -1,28 +1,33 @@
 package com.advent.of.code.daythree;
 
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DayThree {
+  private final char[][] map;
 
-  public static int partOne(final String filename) throws IOException {
-    final char[][] map =
+  public DayThree(final String filename) throws IOException {
+    this.map =
         Files.readAllLines(Paths.get(filename)).stream()
-            .map(s -> s.toCharArray())
+            .map(String::toCharArray)
             .collect(Collectors.toList())
             .toArray(char[][]::new);
-
-    return countTrees(map, 3, 1);
   }
 
-  public void partTwo(final String filename) throws IOException {
-    final char[][] map =
-        Files.readAllLines(Paths.get(filename)).stream()
-            .map(s -> s.toCharArray())
-            .collect(Collectors.toList())
-            .toArray(char[][]::new);
+  public int partOne() {
+    return countTrees(this.map, 3, 1);
+  }
+
+  public long partTwo() {
+    return Stream.of(
+            new Point(1, 1), new Point(3, 1), new Point(5, 1), new Point(7, 1), new Point(1, 2))
+        .mapToLong(slope -> countTrees(this.map, slope.x, slope.y))
+        .reduce((a, b) -> a * b)
+        .getAsLong();
   }
 
   private static int countTrees(final char[][] map, final int slopeX, final int slopeY) {
